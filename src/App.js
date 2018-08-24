@@ -3,6 +3,32 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      dumbCharacters: []
+    }
+  }
+
+  componentDidMount() {
+    fetch('http://127.0.0.1:8000/api/characters')
+    .then( results => {
+      return results.json();
+    })
+    .then( data => {
+      let dumbCharacters = data.map( (dumbChara) => {
+          return (
+            <div key={dumbChara.id}>
+              <p>{dumbChara.name}</p>
+              <p>{dumbChara.best_quote}</p>
+            </div>
+          )
+      })
+      this.setState({ dumbCharacters : dumbCharacters });
+      console.log("state", this.state.pictures);
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -10,9 +36,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {this.state.dumbCharacters}
       </div>
     );
   }
