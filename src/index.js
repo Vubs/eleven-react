@@ -4,49 +4,53 @@ import './index.css';
 //import App from './App';
 //import registerServiceWorker from './registerServiceWorker';
 
-function App(props) {
-  return (
-      <div>
-        <h1>hello {props.name} !</h1>
-        <Clock />
-      </div>
-  );
-}
-
-class Clock extends React.Component {
+class Reservation extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {date: new Date()};
+    this.state = {
+      isGoing: true,
+      numberOfGuests: 2
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  // On veut effectuer une action lors du premier render, on appel cela mounting
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
 
-  tick() {
     this.setState({
-      date: new Date()
+      [name]: value
     });
-  }
-  // Sert a effectuer des actions lorsque le component sors du dom.
-  componentWillUnmount() {
-    clearInterval(this.timerID);
   }
 
   render() {
     return (
-      <div>
-        <h2>Mon horloge</h2>
-        <p>It is {this.state.date.toLocaleTimeString()}</p>
-      </div>
-    )
+      <form>
+        <label>
+          Is going:
+          <input
+            name="isGoing"
+            type="checkbox"
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} />
+        </label>
+        <br />
+        <label>
+          Number of guests:
+          <input
+            name="numberOfGuests"
+            type="number"
+            value={this.state.numberOfGuests}
+            onChange={this.handleInputChange} />
+        </label>
+      </form>
+    );
   }
 }
 
 
-ReactDOM.render(<App name="Vincent" />, document.getElementById('root'));
+ReactDOM.render(<Reservation />  ,
+  document.getElementById('root'));
 //registerServiceWorker();
