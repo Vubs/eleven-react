@@ -6,15 +6,12 @@ class DumbCharacterList extends React.Component {
     const dumbCharaList = this.props.dumbCharaList;
 
     if(dumbCharaList !== null) {
-        const items = dumbCharaList.map((dumbChara) => <DumbCharacterRow value={dumbChara} key={dumbChara.id}/> );
-    } else {
-        const items = ["null"];
+        const items = dumbCharaList.map((dumbChara) => {<DumbCharacterRow value={dumbChara} key={dumbChara.id}/>} );
     }
-
 
     return (
       <div className="container">
-        {items}
+        
       </div>
     )
   }
