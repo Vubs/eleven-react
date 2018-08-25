@@ -4,53 +4,64 @@ import './index.css';
 //import App from './App';
 //import registerServiceWorker from './registerServiceWorker';
 
-class Reservation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isGoing: true,
-      numberOfGuests: 2
-    };
+const CHARACTERS = [
+    {
+        "id": 9,
+        "name": "Rick Sanchez",
+        "best_quote": "Wuba luba dub duuub!"
+    },
+    {
+        "id": 10,
+        "name": "Pickle Rick",
+        "best_quote": "I'M PICKLE RIIIIIIICK !"
+    },
+    {
+        "id": 11,
+        "name": "Morty Smith",
+        "best_quote": "Nobody exist on purpose, nobody belongs anywhere, everybody gonna die. Come watch TV.. ?"
+    }
+];
 
-    this.handleInputChange = this.handleInputChange.bind(this);
+class DumbCharacterList extends React.Component {
+  render() {
+    const items = [];
+    this.props.dumbCharaList.forEach(
+      (dumbChara) => {
+        items.push(
+          <DumbCharacterRow value={dumbChara} key={dumbChara.id}/>
+        )
+      }
+    )
+
+    return (
+      <div className="container">
+        {items}
+      </div>
+
+    )
   }
+}
 
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  }
+class DumbCharacterRow extends React.Component {
 
   render() {
+    const dumbCharacter = this.props.value;
+
     return (
-      <form>
-        <label>
-          Is going:
-          <input
-            name="isGoing"
-            type="checkbox"
-            checked={this.state.isGoing}
-            onChange={this.handleInputChange} />
-        </label>
-        <br />
-        <label>
-          Number of guests:
-          <input
-            name="numberOfGuests"
-            type="number"
-            value={this.state.numberOfGuests}
-            onChange={this.handleInputChange} />
-        </label>
-      </form>
-    );
+      <div className="card">
+        <img className="card-img-top" src="..." alt="Card cap" />
+        <div className="card-body">
+          <h5 className="card-title">{dumbCharacter.name}</h5>
+          <p className="card-text">{dumbCharacter.best_quote}</p>
+          <a href="#" className="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    )
   }
 }
 
 
-ReactDOM.render(<Reservation />  ,
+
+ReactDOM.render(<DumbCharacterList dumbCharaList={CHARACTERS} />  ,
   document.getElementById('root'));
 //registerServiceWorker();
