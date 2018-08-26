@@ -29,7 +29,7 @@ class Form extends Component {
   handleSubmit(event) {
     // We want all 3 input to be at leat one character
     if (this.state.name && this.state.best_quote && this.state.image_url) {
-      fetch('http://127.0.0.1:8000/api/characters', {
+      fetch('http://localhost:8000/api/characters', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
