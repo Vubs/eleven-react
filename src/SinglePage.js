@@ -11,7 +11,7 @@ class SinglePage extends Component {
   }
 
   fetchElement(id) {
-    fetch('http://127.0.0.1:8000/api/characters/' + id)
+    fetch('http://localhost:8000/api/characters/' + id)
       .then(response => response.json())
       .then(data => {
         this.setState({ data });

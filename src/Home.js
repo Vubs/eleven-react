@@ -13,7 +13,7 @@ class Home extends Component {
   // Maybe the fetch could be somehere else.
   fetchElements() {
     // fetching on the route for All Characters
-    fetch('http://127.0.0.1:8000/api/characters')
+    fetch('http://localhost:8000/api/characters')
       .then(response => response.json())
       .then(data => {
          this.setState({ data });

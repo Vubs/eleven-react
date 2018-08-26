@@ -60,8 +60,6 @@ class Form extends Component {
     }
 
     return (
-
-
       <form onSubmit={this.handleSubmit}>
         {error}
         <div className="form-group">
