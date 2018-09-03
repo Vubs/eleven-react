@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import DumbCharacterRow from "./DumbCharacterRow";
 
 
-class SinglePage extends Component {
+class CharacterDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,11 +23,10 @@ class SinglePage extends Component {
   }
 
   render() {
-    const data = this.state.data;
     return (
-      <DumbCharacterRow value={data} />
+      <DumbCharacterRow value={this.state.data} />
     );
   }
 }
 
-export default SinglePage;
+export default CharacterDetails;

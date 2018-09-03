@@ -3,8 +3,7 @@ import React, {Component} from "react";
 class DumbCharacterRow extends React.Component {
 
   render() {
-    const dumbCharacter = this.props.value;
-    console.log(this.props.value);
+    const {dumbCharacter} = this.props;
 
     return (
       <div className="card" style={{width: "300px"}}>

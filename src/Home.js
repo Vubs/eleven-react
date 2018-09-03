@@ -26,16 +26,15 @@ class Home extends Component {
 
 
   render() {
-    const data = this.state.data;
-    // mapping my datas
-    const listItems = data.map((item) =>
-      <DumbCharacterRow value={item} key={item.id}/>
-    );
+    const {data} = this.state;
+
     return (
       <div className="container">
         <h1>Liste des personnages :</h1>
         <div>
-          {listItems}
+          {data.map((item) =>
+            <DumbCharacterRow dumbCharacter={item} key={item.id}/>
+          )}
         </div>
       </div>
     )

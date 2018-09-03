@@ -1,44 +1,35 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, {Component} from "react";
+import {
+  Route,
+  NavLink,
+  HashRouter,
+  Switch
+} from "react-router-dom";
+import Home from "./Home";
+import Form from "./Form";
+import CharacterDetails from "./CharacterDetails";
 
 class App extends Component {
-	constructor() {
-		super();
-		this.state = {
-			dumbCharacters: []
-		};
-	}
+  render() {
 
-	componentDidMount() {
-		fetch("http://127.0.0.1:8000/api/characters")
-			.then( results => {
-				return results.json();
-			})
-			.then( data => {
-				let dumbCharacters = data.map( (dumbChara) => {
-					return (
-						<div key={dumbChara.id}>
-							<p>{dumbChara.name}</p>
-							<p>{dumbChara.best_quote}</p>
-						</div>
-					);
-				});
-				this.setState({ dumbCharacters : dumbCharacters });
-			});
-	}
-
-	render() {
-		return (
-			<div className="App">
-				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">Welcome to React</h1>
-				</header>
-				{this.state.dumbCharacters}
-			</div>
-		);
-	}
+    return (
+      <HashRouter>
+        <div>
+          <ul className="header">
+            <li><NavLink exact to="/">Home</NavLink></li>
+            <li><NavLink to="/form">Form</NavLink></li>
+          </ul>
+          <div className="content">
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route path="/form" component={Form}/>
+              <Route path="/characters/:id" component={CharacterDetails}/>
+            </Switch>
+          </div>
+        </div>
+      </HashRouter>
+    );
+  }
 }
 
 export default App;
